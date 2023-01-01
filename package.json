@@ -1,0 +1,23 @@
+{
+  "name": "kdutify-loader",
+  "version": "0.2.0",
+  "description": "",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kdutifyjs/kdutify-loader.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "NKDuy",
+  "license": "MIT",
+  "bugs": {
+    "url": "git+https://github.com/kdutifyjs/kdutify-loader/issues"
+  },
+  "homepage": "git+https://github.com/kdutifyjs/kdutify-loader#readme",
+  "dependencies": {
+    "gm": "^1.23.1",
+    "loader-utils": "^1.1.0"
+  }
+}
