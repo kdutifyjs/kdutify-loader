@@ -1,36 +1,126 @@
 # kdutify-loader
 
+## Automatic Imports
+`kdutify-loader` will automatically import all Kdutify components as you use them
+
+```js
+// webpack.config.js
+
+const { KdutifyLoaderPlugin } = require('kdutify-loader')
+
+exports.plugins.push(
+  new KdutifyLoaderPlugin()
+)
+```
+
+You can also provide a custom match function to import your own project's components too:
+```js
+// webpack.config.js
+
+const { KdutifyLoaderPlugin } = require('kdutify-loader')
+
+exports.plugins.push(
+  new KdutifyLoaderPlugin({
+    /**
+     * This function will be called for every tag used in each kdu component
+     * It should return an array, the first element will be inserted into the
+     * components array, the second should be a corresponding import
+     *
+     * originalTag - the tag as it was originally used in the template
+     * kebabTag    - the tag normalised to kebab-case
+     * camelTag    - the tag normalised to PascalCase
+     * path        - a relative path to the current .kdu file
+     * component   - a parsed representation of the current component
+     */
+    match (originalTag, { kebabTag, camelTag, path, component }) {
+      if (kebabTag.startsWith('core-')) {
+        return [camelTag, `import ${camelTag} from '@/components/core/${camelTag.substring(4)}.kdu'`]
+      }
+    }
+  })
+)
+```
+
+or if you're using Kdu CLI:
+```js
+// kdu.config.js
+
+module.exports = {
+  chainWebpack: config => {
+    config.plugin('KdutifyLoaderPlugin').tap(args => [{
+      match (originalTag, { kebabTag, camelTag, path, component }) {
+        if (kebabTag.startsWith('core-')) {
+          return [camelTag, `import ${camelTag} from '@/components/core/${camelTag.substring(4)}.kdu'`]
+        }
+      }
+    }])
+  }
+}
+```
+
+```html
+<template>
+  <core-form>
+    <k-card>
+      ...
+    </k-card>
+  </core-form>
+</template>
+
+<script>
+  export default {
+    ...
+  }
+</script>
+```
+
+Will be compiled into:
+
+```html
+<template>
+  <core-form>
+    <k-card>
+      ...
+    </k-card>
+  </core-form>
+</template>
+
+<script>
+  import { KCard } from 'kdutify/lib'
+  import CoreForm from '@/components/core/Form.kdu'
+
+  export default {
+    components: {
+      KCard,
+      CoreForm
+    },
+    ...
+  }
+</script>
+```
+
 ## Progressive images
 
 `kdutify-loader` can automatically generate low-res placeholders for the `k-img` component
 
-**NOTE:** You ***must*** have [ImageMagick](https://www.imagemagick.org/script/index.php) installed for this to work
+**NOTE:** You ***must*** have [ImageMagick](https://www.imagemagick.org/script/index.php), [GraphicsMagick](http://www.graphicsmagick.org/), or [sharp](https://github.com/lovell/sharp) installed for this to work
 
-Just some small modifications to your webpack rules:
+Add `progressiveImages` to the plugin options:
 ```js
-const { KdutifyProgressiveModule } = require('kdutify-loader')
+exports.plugins.push(
+  new KdutifyLoaderPlugin({
+    progressiveImages: true
+  })
+)
 
-
-  {
-    test: /\.kdu$/,
-    loader: 'kdu-loader',
-    options: {
-      compilerOptions: {
-        modules: [KdutifyProgressiveModule]
-      }
-    }
-  },
-  {
-    test: /\.(png|jpe?g|gif)$/,
-    resourceQuery: /kdutify-preload/,
-    use: [
-      'kdutify-loader/progressive-loader',
-      {
-        loader: 'url-loader',
-        options: { limit: 8000 }
-      }
-    ]
+// kdu-cli
+module.exports = {
+  chainWebpack: config => {
+    config.plugin('KdutifyLoaderPlugin').tap(args => [{
+      progressiveImages: true
+    }])
   }
+}
 ```
 
 And away you go!
@@ -38,15 +128,44 @@ And away you go!
 <k-img src="@/assets/some-image.jpg"></k-img>
 ```
 
+**NOTE:** The src must follow [kdu-loader's transform rules](https://kdujs-loader.web.app/guide/asset-url.html#transform-rules)
+
 ### Loops and dynamic paths
 
-`KdutifyProgressiveModule` only works on static paths, for use in a loop you have to `require` the image yourself:
+`progressiveImages` only works on static paths, for use in a loop you have to `require` the image yourself:
 
 ```html
 <k-img k-for="i in 10" :src="require(`@/images/image-${i}.jpg?kdutify-preload`)" :key="i">
 ```
 
-### Lazy-loading specific images
+### Configuration
+
+`progressiveImages: true` can be replaced with an object for advanced configuration
+
+```js
+new KdutifyLoaderPlugin({
+  progressiveImages: {
+    size: 12, // Use higher-resolution previews
+    sharp: true // Use sharp instead of ImageMagick
+  }
+})
+```
+
+#### Options
+
+##### `size`
+
+Type: `Number`
+Default: `9`
+
+The minimum dimensions of the generated preview images in pixels
+
+##### `resourceQuery`
+
+Type: `RegExp`
+Default: `/kdutify-preload/`
+
+Override the resource qury to match k-img URLs
 
 If you only want some images to have placeholders, add `?lazy` to the end of the request:
 ```html
@@ -55,42 +174,35 @@ If you only want some images to have placeholders, add `?lazy` to the end of the
 
 And modify the regex to match:
 ```js
-resourceQuery: /lazy\?kdutify-preload/
+new KdutifyLoaderPlugin({
+  progressiveImages: {
+    resourceQuery: /lazy\?kdutify-preload/
+  }
+})
 ```
 
-### Configuration
+##### `sharp`
 
-```js
-{
-  size: number // The minimum dimensions of the preview images, defaults to 9px
-  // TODO
-  // limit: number // Source images smaller than this value (in bytes) will not be transformed
-}
-```
+Type: `Boolean`
+Default: `false`
 
-### Combining with another url-loader rule
+Use sharp instead of GM for environments without ImageMagick. This will result in lower-quality images
 
-Use `Rule.oneOf` to prevent corrupt output when there are multiple overlapping rules:
+##### `graphicsMagick`
 
-```js
-{
-  test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)(\?.*)?$/,
-  oneOf: [
-    {
-      test: /\.(png|jpe?g|gif)$/,
-      resourceQuery: /kdutify-preload/,
-      use: [
-        'kdutify-loader/src/progressive-loader',
-        {
-          loader: 'url-loader',
-          options: { limit: 8000 }
-        }
-      ]
-    },
-    {
-      loader: 'url-loader',
-      options: { limit: 8000 }
-    }
-  ]
-}
-```
+Type: `Boolean`
+Default: `false`
+
+Use GraphicsMagic instead of ImageMagick
+
+##### `registerStylesSSR`
+
+Type: `Boolean`
+Default: `false`
+
+Register Kdutify styles in `kdu-style-loader`.
+
+This fixes styles not being loaded when doing SSR (for example when using `@dtwojs/kdutify`).
+As Kdutify imports styles with JS, without this option, they do not get picked up by SSR.
+
+⚠️ This option requires having `manualInject` set to `true` in `kdu-style-loader` config.

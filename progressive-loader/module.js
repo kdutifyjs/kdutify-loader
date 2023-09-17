@@ -1,3 +1,5 @@
+const { hyphenate } = require('../lib/util')
+
 module.exports = {
   postTransformNode: transform
 }
@@ -6,7 +8,7 @@ module.exports = {
 function transform(node) {
   const tags = ['k-img', 'k-card-media', 'k-carousel-item']
 
-  if (tags.includes(kebabCase(node.tag)) && node.attrs) {
+  if (tags.includes(hyphenate(node.tag)) && node.attrs) {
     const attr = node.attrs.find(a => a.name === 'src')
     if (!attr) return
 
@@ -31,8 +33,4 @@ function urlToRequire(url) {
   } else {
     return `"${url}"`
   }
-}
-
-function kebabCase (str) {
-  return (str || '').replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 }
