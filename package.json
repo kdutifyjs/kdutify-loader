@@ -17,13 +17,15 @@
   },
   "homepage": "git+https://github.com/kdutifyjs/kdutify-loader#readme",
   "dependencies": {
+    "acorn": "^8.4.1",
+    "acorn-walk": "^8.2.0",
     "decache": "^4.6.0",
     "file-loader": "^6.2.0",
     "loader-utils": "^2.0.0"
   },
   "peerDependencies": {
     "gm": "^1.23.0",
-    "kdu-template-compiler": "^2.6.10",
+    "kdu": "^2.7.0",
     "kdutify": "^1.3.0 || ^2.0.0",
     "pug": "^2.0.0",
     "sharp": "^0.21.0",
@@ -31,9 +33,6 @@
   },
   "peerDependenciesMeta": {
     "gm": {
-      "optional": true
-    },
-    "kdu-template-compiler": {
       "optional": true
     },
     "pug": {
@@ -45,9 +44,8 @@
   },
   "devDependencies": {
     "gm": "^1.23.1",
-    "kdu": "^2.6.14",
-    "kdu-template-compiler": "^2.6.14",
-    "kdutify": "^2.6.1",
+    "kdu": "^2.7.16",
+    "kdutify": "^2.7.2",
     "sharp": "^0.27.0"
   }
 }

@@ -2,24 +2,58 @@
 # yarn lockfile v1
 
 
-"@babel/parser@^7.18.4":
-  version "7.22.16"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.16.tgz#180aead7f247305cce6551bea2720934e2fa2c95"
-  integrity sha512-+gPfKv8UWeKKeJTUxe59+OobVcrYHETCsORl61EmSkmgymguYk/X5bp7GuUIXaFsc6y++v8ZxPsLSSuujqDphA==
+"@babel/helper-string-parser@^7.27.1":
+  version "7.27.1"
+  resolved "https://registry.yarnpkg.com/@babel/helper-string-parser/-/helper-string-parser-7.27.1.tgz#54da796097ab19ce67ed9f88b47bb2ec49367687"
+  integrity sha512-qMlSxKbpRlAridDExk92nSobyDdpPijUq2DW6oDnUqd0iOGxmQjyqhMIihI9+zv4LPyZdRje2cavWPbCbWm3eA==
 
-"@kdujs/compiler-sfc@2.7.14":
-  version "2.7.14"
-  resolved "https://registry.yarnpkg.com/@kdujs/compiler-sfc/-/compiler-sfc-2.7.14.tgz#cafa9f3de1d35712b92d34ec0bd8cd78b9a2fabd"
-  integrity sha512-p9In2/2nLJpi3wo/4mv1iDx2TvSgoqaadOLPQvFLc5u7znHkyNJr8LnzjQTTZoPnu9gpzYZh0CXVjMBlY7ag0A==
+"@babel/helper-validator-identifier@^7.28.5":
+  version "7.28.5"
+  resolved "https://registry.yarnpkg.com/@babel/helper-validator-identifier/-/helper-validator-identifier-7.28.5.tgz#010b6938fab7cb7df74aa2bbc06aa503b8fe5fb4"
+  integrity sha512-qSs4ifwzKJSV39ucNjsvc6WVHs6b7S03sOh2OcHF9UHfVPqWWALUsNUVzhSBiItjRZoLHx7nIarVjqKVusUZ1Q==
+
+"@babel/parser@^7.23.5":
+  version "7.28.5"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.28.5.tgz#0b0225ee90362f030efd644e8034c99468893b08"
+  integrity sha512-KKBU1VGYR7ORr3At5HAtUQ+TV3SzRCXmA/8OdDZiLDBIZxVyzXuztPjfLd3BV1PRAQGCMWWSHYhL0F8d5uHBDQ==
   dependencies:
-    "@babel/parser" "^7.18.4"
+    "@babel/types" "^7.28.5"
+
+"@babel/types@^7.28.5":
+  version "7.28.5"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.28.5.tgz#10fc405f60897c35f07e85493c932c7b5ca0592b"
+  integrity sha512-qQ5m48eI/MFLQ5PxQj4PFaprjyCTLI37ElWMmNs0K8Lk3dVeOdNpB3ks8jc7yM5CDmVC73eMVk/trk3fgmrUpA==
+  dependencies:
+    "@babel/helper-string-parser" "^7.27.1"
+    "@babel/helper-validator-identifier" "^7.28.5"
+
+"@kdujs/compiler-sfc@2.7.16":
+  version "2.7.16"
+  resolved "https://registry.yarnpkg.com/@kdujs/compiler-sfc/-/compiler-sfc-2.7.16.tgz#a16fec0da394028f9b8c2ae5929c406d5e27b123"
+  integrity sha512-SpjVPc1KaklzovMPQYraHBVZO6JGt1RC3GgQc2MKCWLzQP+3AoQ6jPHvVXQcUSMaDGNv/3F18jaWvYt5pVHmnw==
+  dependencies:
+    "@babel/parser" "^7.23.5"
     postcss "^8.4.14"
     source-map "^0.6.1"
+  optionalDependencies:
+    prettier "^1.18.2 || ^2.0.0"
 
 "@types/json-schema@^7.0.6":
   version "7.0.6"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.6.tgz#f4c7ec43e81b319a9815115031709f26987891f0"
   integrity sha512-3c+yGKvVP5Y9TYBEibGNR+kLtijnj7mYrXRg+WpFb2X9xm04g/DXYkfg4hmzJQosc9snFNUPkbYIhu+KAm6jJw==
+
+acorn-walk@^8.2.0:
+  version "8.3.4"
+  resolved "https://registry.yarnpkg.com/acorn-walk/-/acorn-walk-8.3.4.tgz#794dd169c3977edf4ba4ea47583587c5866236b7"
+  integrity sha512-ueEepnujpqee2o5aIYnvHU6C0A42MNdsIDeqy5BydrkuC5R1ZuUFnm27EeFJGoEHJQgn3uleRvmTXaJgfXbt4g==
+  dependencies:
+    acorn "^8.11.0"
+
+acorn@^8.11.0, acorn@^8.4.1:
+  version "8.15.0"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.15.0.tgz#a360898bc415edaac46c8241f6383975b930b816"
+  integrity sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==
 
 ajv-keywords@^3.5.2:
   version "3.5.2"
@@ -172,11 +206,6 @@ csstype@^3.1.0:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.2.tgz#1d4bf9d572f11c14031f0436e1c10bc1f571f50b"
   integrity sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==
 
-de-indent@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/de-indent/-/de-indent-1.0.2.tgz#b2038e846dc33baa5796128d0804b455b8c1e21d"
-  integrity sha1-sgOOhG3DO6pXlhKNCAS0VbjB4h0=
-
 debug@^3.1.0:
   version "3.2.7"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.7.tgz#72580b7e9145fb39b6676f9c5e5fb100b934179a"
@@ -294,11 +323,6 @@ has-unicode@^2.0.0:
   resolved "https://registry.yarnpkg.com/has-unicode/-/has-unicode-2.0.1.tgz#e0e6fe6a28cf51138855e086d1691e771de2a8b9"
   integrity sha1-4Ob+aijPUROIVeCG0Wkedx3iqLk=
 
-he@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
-  integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
-
 ieee754@^1.1.13:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.2.1.tgz#8eb7a10a63fff25d15a57b001586d177d1b0d352"
@@ -353,26 +377,18 @@ json5@^2.1.2:
   dependencies:
     minimist "^1.2.5"
 
-kdu-template-compiler@^2.6.14:
-  version "2.7.14"
-  resolved "https://registry.yarnpkg.com/kdu-template-compiler/-/kdu-template-compiler-2.7.14.tgz#593fdf63d1b7216c031c55a81f4bb6803c77283e"
-  integrity sha512-vBX7jrppLBuXJL8ozrnDJkP9vLRWoAa1GaN4WzgukgsBh9fIrLuxayjdvUQG6Uv9/ASfY9UUixdV2QCYkM4Ptg==
+kdu@^2.7.16:
+  version "2.7.16"
+  resolved "https://registry.yarnpkg.com/kdu/-/kdu-2.7.16.tgz#8e2fddb80db3a3811df398bf61f93dc470182b8e"
+  integrity sha512-/qw9o+58p3rJe8aZJPHtJYpojB5hzJW9Dg11gQsGQDVwl47K1MDj40JNFKJlNm3K251jFp0OkQhksE5sxbDBVA==
   dependencies:
-    de-indent "^1.0.2"
-    he "^1.2.0"
-
-kdu@^2.6.14:
-  version "2.7.14"
-  resolved "https://registry.yarnpkg.com/kdu/-/kdu-2.7.14.tgz#12c1327bf71fe81615b159ede608666105a21a07"
-  integrity sha512-fjH18yPNoQ7W6849ox1WI5tUaz3sALZNiddLOWon4/CBN/qcQDjG5/HXTuhQTciBeQkp/XhmpRDet+YvM2UpNQ==
-  dependencies:
-    "@kdujs/compiler-sfc" "2.7.14"
+    "@kdujs/compiler-sfc" "2.7.16"
     csstype "^3.1.0"
 
-kdutify@^2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/kdutify/-/kdutify-2.6.1.tgz#5f4d279b7f072a44ae24fd0e4ca121f63b5d521b"
-  integrity sha512-0PKeZX5gK66039Y29o+GLSBRt9ZcQE/LHKL6wqZXebRbjPA25VlkuJtUQLDdSwv/XlHcRBSv7evzINmQfSLf9g==
+kdutify@^2.7.2:
+  version "2.7.2"
+  resolved "https://registry.yarnpkg.com/kdutify/-/kdutify-2.7.2.tgz#e837a2f31c0fc9bffe5e5989da44349e8e4c6457"
+  integrity sha512-0/GqKL95RbZ6OcUc9IeWpn+XyoTAgZhxdaw26r+aWbVj/5vWreiCxZQk62zaJVZXs+rwSBZtkQRPWwMgO3vMRg==
 
 loader-utils@^2.0.0:
   version "2.0.0"
@@ -511,6 +527,11 @@ prebuild-install@^6.0.0:
     tar-fs "^2.0.0"
     tunnel-agent "^0.6.0"
     which-pm-runs "^1.0.0"
+
+"prettier@^1.18.2 || ^2.0.0":
+  version "2.8.8"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.8.tgz#e8c5d7e98a4305ffe3de2e1fc4aca1a71c28b1da"
+  integrity sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==
 
 process-nextick-args@~2.0.0:
   version "2.0.1"
