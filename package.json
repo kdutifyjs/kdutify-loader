@@ -1,6 +1,6 @@
 {
   "name": "kdutify-loader",
-  "version": "1.7.3",
+  "version": "1.8.0",
   "description": "A Webpack plugin for treeshaking Kdutify components and more",
   "main": "lib/index.js",
   "repository": {
@@ -30,10 +30,18 @@
     "webpack": "^4.0.0 || ^5.0.0"
   },
   "peerDependenciesMeta": {
-    "gm": { "optional": true },
-    "kdu-template-compiler": { "optional": true },
-    "pug": { "optional": true },
-    "sharp": { "optional": true }
+    "gm": {
+      "optional": true
+    },
+    "kdu-template-compiler": {
+      "optional": true
+    },
+    "pug": {
+      "optional": true
+    },
+    "sharp": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "gm": "^1.23.1",
