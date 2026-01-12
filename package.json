@@ -1,6 +1,6 @@
 {
   "name": "kdutify-loader",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "A Webpack plugin for treeshaking Kdutify components and more",
   "main": "lib/index.js",
   "repository": {
