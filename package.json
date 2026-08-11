@@ -1,0 +1,36 @@
+{
+  "name": "kdutify-loader",
+  "version": "1.0.8",
+  "description": "",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kdutifyjs/kdutify-loader.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "git+https://github.com/kdutifyjs/kdutify-loader/issues"
+  },
+  "homepage": "git+https://github.com/kdutifyjs/kdutify-loader#readme",
+  "dependencies": {
+    "loader-utils": "1.1.0"
+  },
+  "devDependencies": {
+    "kdu-template-compiler": "2.5.24",
+    "webpack": "4.20.2"
+  },
+  "peerDependencies": {
+    "kdu-template-compiler": "^2.5.0",
+    "kdutify": "^1.5.24",
+    "webpack": "^4.0.0"
+  },
+  "optionalPeerDependencies": {
+    "gm": "^1.23.0",
+    "pug": "^2.0.0",
+    "sharp": "^0.21.0"
+  }
+}

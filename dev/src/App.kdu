@@ -1,0 +1,15 @@
+<template>
+  <k-app>
+    <k-container>
+      <k-card>
+        <k-card-text>
+          <k-text-field></k-text-field>
+        </k-card-text>
+      </k-card>
+    </k-container>
+  </k-app>
+</template>
+
+<script>
+export default {}
+</script>
