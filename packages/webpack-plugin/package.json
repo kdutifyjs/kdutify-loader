@@ -1,0 +1,50 @@
+{
+  "name": "webpack-plugin-kdutify",
+  "version": "2.0.1",
+  "description": "A Webpack plugin for treeshaking Kdutify components and more",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kdutifyjs/kdutify-loader.git"
+  },
+  "scripts": {
+    "build": "tsc --outdir dist",
+    "dev": "yarn run build --watch"
+  },
+  "author": "NKDuy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kdutifyjs/kdutify-loader/issues"
+  },
+  "homepage": "https://github.com/kdutifyjs/kdutify-loader/packages/webpack-plugin",
+  "dependencies": {
+    "@kdutify/loader-shared": "1.7.1",
+    "decache": "4.6.0",
+    "file-loader": "6.2.0",
+    "find-cache-dir": "3.3.2",
+    "loader-utils": "2.0.0",
+    "mkdirp": "1.0.4",
+    "null-loader": "4.0.1",
+    "upath": "2.0.1"
+  },
+  "peerDependencies": {
+    "@kdujs/compiler-sfc": "^3.2.6",
+    "kdutify": "^3.0.0",
+    "webpack": "^5.0.0"
+  },
+  "optionalPeerDependencies": {
+    "gm": "^1.23.0",
+    "pug": "^2.0.0",
+    "sharp": "^0.21.0"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "files": [
+    "dist/"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,30 @@
+import { Plugin } from 'lahm'
+import { Options, isObject, includes, transformAssetUrls } from '@kdutify/loader-shared'
+
+import { importPlugin } from './importPlugin'
+import { stylesPlugin } from './stylesPlugin'
+
+function kdutify (_options: Options = {}): Plugin[] {
+  const options: Options = {
+    autoImport: true,
+    styles: true,
+    stylesTimeout: 1000,
+    ..._options,
+  }
+
+  const plugins: Plugin[] = []
+  if (options.autoImport) {
+    plugins.push(importPlugin())
+  }
+  if (includes(['none', 'expose', 'sass'], options.styles) || isObject(options.styles)) {
+    plugins.push(stylesPlugin(options))
+  }
+
+  return plugins
+}
+
+module.exports = kdutify
+export default kdutify
+
+module.exports.transformAssetUrls = transformAssetUrls
+export { transformAssetUrls }

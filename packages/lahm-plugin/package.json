@@ -1,0 +1,39 @@
+{
+  "name": "lahm-plugin-kdutify",
+  "version": "1.0.2",
+  "description": "A Lahm plugin for treeshaking Kdutify components and more",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kdutifyjs/kdutify-loader.git"
+  },
+  "scripts": {
+    "build": "tsc --outdir dist",
+    "dev": "yarn run build --watch"
+  },
+  "author": "NKDuy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kdutifyjs/kdutify-loader/issues"
+  },
+  "homepage": "https://github.com/kdutifyjs/kdutify-loader/packages/lahm-plugin",
+  "dependencies": {
+    "@kdutify/loader-shared": "1.7.1",
+    "debug": "4.3.3",
+    "upath": "2.0.1"
+  },
+  "peerDependencies": {
+    "kdutify": "^3.0.0",
+    "lahm": "^2.7.0 || ^3.0.0 || ^4.0.0"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "files": [
+    "dist/"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

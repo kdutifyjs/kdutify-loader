@@ -1,0 +1,38 @@
+{
+  "name": "@kdutify/loader-shared",
+  "version": "1.7.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kdutifyjs/kdutify-loader.git"
+  },
+  "scripts": {
+    "build": "tsc --outdir dist",
+    "dev": "yarn run build --watch"
+  },
+  "author": "NKDuy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kdutifyjs/kdutify-loader/issues"
+  },
+  "homepage": "https://github.com/kdutifyjs/kdutify-loader/packages/shared",
+  "dependencies": {
+    "find-cache-dir": "3.3.2",
+    "upath": "2.0.1"
+  },
+  "peerDependencies": {
+    "kdu": "^3.0.0",
+    "kdutify": "^3.0.0"
+  },
+  "files": [
+    "dist/"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./*": "./*"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
